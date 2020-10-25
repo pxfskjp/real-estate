@@ -16,6 +16,7 @@ export class HomePage implements OnInit {
   itemRef: AngularFireList<any>; 
   
   constructor(private database: AngularFireDatabase, private activatedRoute: ActivatedRoute) {
+    // the appointement with small 'a' is coming from the Firebase realtime database to not be confused with appointment with 'A' which is a router param
     this.itemRef = this.database.list('/appointments');
     this.appointments$ = this.itemRef.snapshotChanges();
   }

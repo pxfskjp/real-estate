@@ -1,19 +1,23 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-
-import { IonicModule } from '@ionic/angular';
-
-import { AuditPageRoutingModule } from './audit-routing.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AuditPage } from './audit.page';
+import { AuditPageRoutingModule } from './audit-routing.module';
+import { CommonModule } from '@angular/common';
+import { FormlyIonicModule } from '@ngx-formly/ionic';
+import { FormlyModule } from '@ngx-formly/core';
+import { IonicModule } from '@ionic/angular';
+import { NgModule } from '@angular/core';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AuditPageRoutingModule
+    ReactiveFormsModule,
+    AuditPageRoutingModule,
+    FormlyModule.forRoot(),
+    FormlyIonicModule,
+    IonicModule
   ],
   declarations: [AuditPage]
 })

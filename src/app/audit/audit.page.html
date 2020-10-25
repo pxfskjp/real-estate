@@ -1,12 +1,16 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons>
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Audit</ion-title>
+    <ion-title>Apt # {{model?.number}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content padding>
+    <form [formGroup]="form" *ngIf="model">
+        <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form">
+            <ion-button shape="round" (click)="submit()" expand="full" color="primary">Save</ion-button>
+        </formly-form>
+      </form>
 </ion-content>
