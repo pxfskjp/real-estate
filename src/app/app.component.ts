@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   public appPages = [
     {
       title: 'Appointments',
-      url: '/home/appointments',
+      url: '/home/Appointments',
       icon: 'mail'
     },
     {
