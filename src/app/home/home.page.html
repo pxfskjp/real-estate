@@ -13,9 +13,12 @@
       <ion-title size="large">{{ title }}</ion-title>
     </ion-toolbar>
   </ion-header>
-
-  <div id="container">
-    <strong class="capitalize">{{ title }}</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <ion-card class="welcome-card" [routerLink]="['/audit', appointment.key]" *ngFor="let appointment of appointments$ | async">
+    <ion-card-header>
+      <ion-badge class="card-end" [attr.color]="getBadgeColor(appointment)">{{getBadgeLabel(appointment)}}</ion-badge>
+      <ion-card-title>Apt {{appointment.payload.val().number}}</ion-card-title>
+      <ion-card-subtitle>{{appointment.payload.val()}}</ion-card-subtitle>
+      <ion-card-subtitle>{{appointment.payload.val().assignedTo}}</ion-card-subtitle>
+    </ion-card-header>
+  </ion-card>
 </ion-content>
