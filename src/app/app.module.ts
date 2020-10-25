@@ -9,7 +9,6 @@ import { NgModule } from '@angular/core';
 import { RouteReuseStrategy } from '@angular/router';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { RoomsAndBathsPipe } from './rooms-and-baths.pipe';
 
 const config = {
   apiKey: "AIzaSyBfYyX-s0mS6Oi4x2v1puqHuuuRMnBzHhI",
@@ -21,7 +20,7 @@ const config = {
     appId: "1:362830594681:web:e99a06d1597911e4bb0aa8"
 }
 @NgModule({
-  declarations: [AppComponent, RoomsAndBathsPipe],
+  declarations: [AppComponent],
   entryComponents: [],
   imports: [
     BrowserModule,

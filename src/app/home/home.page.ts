@@ -9,17 +9,17 @@ import { Observable } from 'rxjs';
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
+
 export class HomePage implements OnInit {
   public title: string;
   appointments$ : Observable<any>; 
   itemRef: AngularFireList<any>; 
   
-  constructor(private activatedRoute: ActivatedRoute, private database: AngularFireDatabase) {
+  constructor(private database: AngularFireDatabase, private activatedRoute: ActivatedRoute) {
+    this.itemRef = this.database.list('/appointments');
+    this.appointments$ = this.itemRef.snapshotChanges();
+  }
 
-    this.itemRef = this.database.list('/appointments'); 
-    this.appointments$ = this.itemRef.snapshotChanges(); 
-
-   }
 
   ngOnInit() {
     this.title = this.activatedRoute.snapshot.paramMap.get('id');
@@ -27,13 +27,11 @@ export class HomePage implements OnInit {
 
   getBadgeColor(appointment){
     const status = appointment.payload.val().status; 
-    return status === 'incomplete' ? 'danger' : status === 'complete' ? 'success'; 
+    return status === 'incomplete' ? 'danger' : status === 'complete' ? 'success' : 'primary';  
   }
 
   getBadgeLabel(appointment){
     const status = appointment.payload.val().status; 
-    return status === 'incomplete' ? 'danger' : status === 'complete' ? 'success'; 
+    return status === 'incomplete' ? 'Incomplete' : status === 'complete' ? 'Completed' : 'Not Started'
   }
-
-
 }
