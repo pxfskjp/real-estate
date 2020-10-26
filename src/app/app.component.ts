@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
     {
       title: 'Appointments',
       url: '/home/Appointments',
-      icon: 'mail'
+      icon: 'checkbox'
     },
     {
       title: 'Outbox',
