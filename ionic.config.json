@@ -1,5 +1,7 @@
 {
   "name": "apartment-audit",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

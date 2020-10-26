@@ -4,10 +4,16 @@
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>Apt # {{model?.number}}</ion-title>
+    <ion-buttons>
+      <ion-icon padding name="camera" (click)="openCamera()"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+  <div class="image-container" *ngFor="let photo of base64Images">
+    <img src="30" height="30" [src]="photo" >
+  </div>
     <form [formGroup]="form" *ngIf="model">
         <formly-form [model]="model" [fields]="fields" [options]="options" [form]="form">
             <ion-button shape="round" (click)="submit()" expand="full" color="primary">Save</ion-button>

@@ -1,5 +1,6 @@
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFireDatabase, AngularFireObject } from '@angular/fire/database';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { Component, OnInit } from '@angular/core';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 
@@ -107,7 +108,13 @@ export class AuditPage implements OnInit {
   fields: FormlyFieldConfig[];
   itemRef: AngularFireObject<IAppointment>;
 
-  constructor(private db: AngularFireDatabase, private route: ActivatedRoute, private router: Router) {
+  base64Images: string[];
+
+  constructor(
+    private db: AngularFireDatabase,
+    private route: ActivatedRoute,
+    private router: Router,
+    private camera: Camera) {
 
     const params = this.route.snapshot.params;
     this.itemRef = this.db.object<IAppointment>(`/appointments/${params.key}`);
@@ -134,12 +141,28 @@ export class AuditPage implements OnInit {
   ngOnInit() {
   }
 
+  openCamera(){
+    const options: CameraOptions = {
+      quality: 100,
+      cameraDirection: this.camera.Direction.BACK,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.MediaType.PICTURE
+    };
+
+    this.camera.getPicture(options).then((imageData) => {
+      this.base64Images.push(`data:image/jpeg;base64,${imageData}`);
+    });
+  }
+
   submit(){
     this.itemRef.update({
       ...this.model,
+      photos: this.base64Images,
       status: this.form.invalid ? 'incomplete' : 'complete',
     });
     this.router.navigateByUrl('/home/Appointments');
   }
+
+
 
 }
